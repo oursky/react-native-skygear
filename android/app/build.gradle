@@ -101,8 +101,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.oursky.helloworld"
@@ -164,7 +164,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:23.4.1"
+    implementation "com.android.support:appcompat-v7:26.1.0"
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'io.sentry:sentry-android:1.7.5'
 }
