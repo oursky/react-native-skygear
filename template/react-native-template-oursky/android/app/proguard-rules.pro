@@ -70,4 +70,4 @@
 -dontwarn okio.**
 
 # react native config
--keep class com.folloeme.BuildConfig { *; }
+-keep class com.oursky.helloworld.BuildConfig { *; }
