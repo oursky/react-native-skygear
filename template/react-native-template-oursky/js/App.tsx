@@ -4,9 +4,15 @@
  * @flow
  */
 import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { Provider } from 'react-redux';
-
+import skygear from 'skygear/react-native';
 import { makeStore } from './store';
 
 const store = makeStore();
@@ -27,6 +33,11 @@ export default class App extends React.Component<Props> {
           <Text style={styles.welcome}>Welcome to React Native!</Text>
           <Text style={styles.instructions}>To get started, edit App.js</Text>
           <Text style={styles.instructions}>{instructions}</Text>
+          <TouchableOpacity
+            onPress={() => skygear.lambda('hello').then(console.log)}
+          >
+            <Text style={styles.instructions}>Tap here to trigger "hello" lambda</Text>
+          </TouchableOpacity>
         </View>
       </Provider>
     );

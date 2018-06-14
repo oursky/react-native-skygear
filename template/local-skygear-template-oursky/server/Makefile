@@ -12,7 +12,7 @@ setup-development:
 	docker-compose up -d postgres
 	sleep 10
 	docker-compose run --rm skygear-plugin alembic upgrade head
-	docker-compose stop
+	docker-compose down
 
 .PHONY: migrate-create
 migrate-create: docker-build
