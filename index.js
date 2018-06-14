@@ -8,19 +8,9 @@ const {
   modifiyEnvConfig,
   runPodInstall,
 } = require('./src/rn-cli');
-const questions = [
-  {
-    type: 'input',
-    name: 'projectName',
-    message: 'Enter Project Name ...',
-    validate: input => {
-      if (input === '') {
-        return 'Project name cannot be empty.';
-      } else {
-        return true;
-      }
-    },
-  },
+const { initServerWithProjectName } = require('./src/local-skygear-cli');
+
+const makeQuestions = name => [
   {
     type: 'input',
     name: 'skygearEndPointDevelopment',
@@ -31,17 +21,13 @@ const questions = [
     type: 'input',
     name: 'skygearAPIKeyDevelopment',
     message: 'Enter Skygear API Key (Development) ...',
-    default: answers => {
-      return `${answers.projectName.toLowerCase()}-development-api-key`;
-    },
+    default: `${name.toLowerCase()}-development-api-key`,
   },
   {
     type: 'input',
     name: 'skygearEndPointStaging',
     message: 'Enter Skygear End Point (Staging) ...',
-    default: answers => {
-      return `https://${answers.projectName.toLowerCase()}.staging.skygeario.com/`;
-    },
+    default: `https://${name.toLowerCase()}.staging.skygeario.com/`,
   },
   {
     type: 'input',
@@ -52,9 +38,7 @@ const questions = [
     type: 'input',
     name: 'skygearEndPointProduction',
     message: 'Enter Skygear End Point (Production) ...',
-    default: answers => {
-      return `https://${answers.projectName.toLowerCase()}.skygeario.com/`;
-    },
+    default: `https://${name.toLowerCase()}.skygeario.com/`,
   },
   {
     type: 'input',
@@ -81,15 +65,30 @@ const questions = [
 program.version('0.0.1').description('React Native Skygear CLI');
 
 program
-  .command('init')
+  .command('init <name>')
   .description('init a react native project')
-  .action(() => {
-    prompt(questions).then(answers => {
-      initRNWithProjectName(answers.projectName);
-      cleanupProject(answers.projectName);
-      runPodInstall(answers.projectName);
-      modifiyEnvConfig(answers);
-    });
+  .option('-s, --server-only', 'Setup skygear server only')
+  .action((name, cmd) => {
+    if (cmd.serverOnly) {
+      initServerWithProjectName(name);
+    } else {
+      prompt(makeQuestions(name)).then(config => {
+        initRNWithProjectName(name);
+        cleanupProject(name);
+        runPodInstall(name);
+        modifiyEnvConfig(name, config);
+
+        prompt({
+          type: 'confirm',
+          name: 'isInitServer',
+          message: 'Also init local skygear server ?',
+        }).then(({ isInitServer }) => {
+          if (isInitServer) {
+            initServerWithProjectName(name);
+          }
+        });
+      });
+    }
   });
 
 program.parse(process.argv);
