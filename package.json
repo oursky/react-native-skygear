@@ -10,6 +10,7 @@
     "envfile": "2.3.0",
     "file-url": "2.0.2",
     "inquirer": "6.0.0",
+    "react-native": "0.55.4",
     "react-native-template-oursky": "file:template/react-native-template-oursky"
   },
   "preferGlobal": true,

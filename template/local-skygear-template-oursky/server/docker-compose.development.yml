@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  skygear-server:
+    env_file:
+      - ./development.env
+    ports:
+      - "3000:3000"
+    volumes:
+      - app_data:/app/data
+  postgres:
+    env_file:
+      - ./development.env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  skygear-plugin:
+    env_file:
+      - ./development.env
+
+volumes:
+  db_data:
+    name: helloworld-db-data
+    driver: local
+  app_data:
+    name: helloworld-app-data
+    driver: local
