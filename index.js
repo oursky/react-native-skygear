@@ -21,7 +21,7 @@ const makeQuestions = name => [
     type: 'input',
     name: 'skygearAPIKeyDevelopment',
     message: 'Enter Skygear API Key (Development) ...',
-    default: `${name.toLowerCase()}-development-api-key`,
+    default: `${name.toLowerCase()}_api_key`,
   },
   {
     type: 'input',
