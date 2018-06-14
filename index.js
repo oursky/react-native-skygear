@@ -7,7 +7,7 @@ const {
   cleanupProject,
   modifiyEnvConfig,
   runPodInstall,
-} = require('./rn-cli');
+} = require('./src/rn-cli');
 const questions = [
   {
     type: 'input',
