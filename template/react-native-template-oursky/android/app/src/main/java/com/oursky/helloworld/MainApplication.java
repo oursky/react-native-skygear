@@ -1,6 +1,7 @@
 package com.oursky.helloworld;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -10,6 +11,9 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
+
+import io.sentry.Sentry;
+import io.sentry.android.AndroidSentryClientFactory;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -41,5 +45,11 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    setupSentry();
+  }
+
+  private void setupSentry() {
+    Context ctx = this.getApplicationContext();
+    Sentry.init(BuildConfig.SENTRY_DSN, new AndroidSentryClientFactory(ctx));
   }
 }
