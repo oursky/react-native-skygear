@@ -6,8 +6,14 @@ const path = require('path');
 
 //call react-native init <projectName> --template <template file path>
 const initRNWithProjectName = projectName => {
+
   const templateFileURL = fileUrl(
-    path.dirname(require.resolve('react-native-template-oursky'))
+    path.resolve(
+      __dirname,
+      '..',
+      'template',
+      'react-native-template-oursky'
+    )
   );
   execSync(`react-native init ${projectName} --template ${templateFileURL}`, {
     stdio: 'inherit',
