@@ -22,18 +22,18 @@ const cleanupProject = projectName => {
 };
 
 //inject skygear config and sentry config to .env files
-const modifiyEnvConfig = config => {
-  mergeEnvFile(path.resolve(config.projectName, 'app.env.development'), {
+const modifiyEnvConfig = (name, config) => {
+  mergeEnvFile(path.resolve(name, 'app.env.development'), {
     SKYGEAR_ENDPOINT: config.skygearEndPointDevelopment,
     SKYGEAR_API_KEY: config.skygearAPIKeyDevelopment,
     SENTRY_DSN: config.sentryDSNDevelopment,
   });
-  mergeEnvFile(path.resolve(config.projectName, 'app.env.staging'), {
+  mergeEnvFile(path.resolve(name, 'app.env.staging'), {
     SKYGEAR_ENDPOINT: config.skygearEndPointStaging,
     SKYGEAR_API_KEY: config.skygearAPIKeyStaging,
     SENTRY_DSN: config.sentryDSNStaging,
   });
-  mergeEnvFile(path.resolve(config.projectName, 'app.env.production'), {
+  mergeEnvFile(path.resolve(name, 'app.env.production'), {
     SKYGEAR_ENDPOINT: config.skygearEndPointProduction,
     SKYGEAR_API_KEY: config.skygearAPIKeyProduction,
     SENTRY_DSN: config.sentryDSNProduction,
@@ -52,4 +52,9 @@ const runPodInstall = projectName => {
   });
 };
 
-module.exports = { initRNWithProjectName, cleanupProject, modifiyEnvConfig, runPodInstall};
+module.exports = {
+  initRNWithProjectName,
+  cleanupProject,
+  modifiyEnvConfig,
+  runPodInstall,
+};
