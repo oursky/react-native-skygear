@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
-import { State as CounterState } from './counter';
+import app, { State as AppState } from './app';
+import counter, { State as CounterState } from './counter';
 
-export interface AppState {
+export interface ApplicationState {
+  app: AppState;
   counter: CounterState;
 }
 
-export default combineReducers<AppState>({
+export default combineReducers<ApplicationState>({
+  app,
   counter,
 });
