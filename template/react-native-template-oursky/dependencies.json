@@ -1,4 +1,5 @@
 {
   "raven-js": "3.26.1",
-  "react-native-config": "0.11.5"
+  "react-native-config": "0.11.5",
+  "skygear": "1.5.0"
 }
