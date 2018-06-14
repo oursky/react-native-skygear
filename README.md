@@ -33,9 +33,20 @@ $ npm install -g <repo url>
 You can start init your app from our template:
 
 ```
-$ react-native-skygear init
-? Enter Project Name ...
+$ react-native-skygear init <projectname>
 ? Enter Skygear End Point (Development) ... 
 ...
 ```
- 
+
+If you also init local skygear server, please ensure shutdown other docker container before run following script.
+```
+$ cd server
+server $ make setup-development
+server $ docker-compose up
+```
+
+### REMARKS
+
+```
+For iOS, please select a schema with config suffix before run at Xcode
+```
