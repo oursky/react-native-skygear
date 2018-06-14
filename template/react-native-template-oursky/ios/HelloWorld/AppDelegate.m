@@ -10,11 +10,14 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <Sentry.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setupSentry];
+
     NSString *env = [ReactNativeConfig envFor:@"ENV_NAME"];
     NSLog(@"Current env = %@", env);
 
@@ -37,6 +40,18 @@
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)setupSentry
+{
+    NSString *sentryDsn = [ReactNativeConfig envFor:@"SENTRY_DSN"];
+    NSError *error = nil;
+    SentryClient *client = [[SentryClient alloc] initWithDsn:sentryDsn didFailWithError:&error];
+    SentryClient.sharedClient = client;
+    [SentryClient.sharedClient startCrashHandlerWithError:&error];
+    if (nil != error) {
+        NSLog(@"%@", error);
+    }
 }
 
 @end
