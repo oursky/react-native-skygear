@@ -100,4 +100,14 @@ program
     }
   });
 
+program.on('command:*', () => {
+  console.error('Invalid command: %s', program.args.join(' '));
+  program.help();
+});
+
 program.parse(process.argv);
+if (program.args.length === 0) {
+  console.error(
+    "You didn't pass any command\nSee --help for a list of available commands."
+  );
+}
