@@ -15,7 +15,16 @@ const initRNWithProjectName = projectName => {
       'react-native-template-oursky'
     )
   );
-  execSync(`react-native init ${projectName} --template ${templateFileURL}`, {
+
+  const localRNCliPath = path.resolve(
+    __dirname,
+    '..',
+    'node_modules',
+    'react-native-cli',
+    'index.js'
+  );
+
+  execSync(`node ${localRNCliPath} init ${projectName} --template ${templateFileURL}`, {
     stdio: 'inherit',
   });
 };
