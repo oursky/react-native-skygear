@@ -62,6 +62,8 @@ const makeQuestions = name => [
   },
 ];
 
+const isValidProjectName = name => name.match(/^[$A-Z_][0-9A-Z_$]*$/i);
+
 program.version('0.0.1').description('React Native Skygear CLI');
 
 program
@@ -69,6 +71,13 @@ program
   .description('init a react native project')
   .option('-s, --server-only', 'Setup skygear server only')
   .action((name, cmd) => {
+    if (!isValidProjectName(name)) {
+      console.error(
+        `${name} is not a valid name for a project. Please use a valid identifier name (alphanumeric).`
+      );
+      return;
+    }
+
     if (cmd.serverOnly) {
       initServerWithProjectName(name);
     } else {
