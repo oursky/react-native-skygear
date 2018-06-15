@@ -86,6 +86,7 @@ program
           if (isInitServer) {
             initServerWithProjectName(name);
           }
+          console.log('All Completed');
         });
       });
     }
