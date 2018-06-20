@@ -11,7 +11,7 @@ const initRNWithProjectName = projectName => {
     path.resolve(
       __dirname,
       '..',
-      'template',
+      'templates',
       'react-native-template-oursky'
     )
   );
