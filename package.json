@@ -10,7 +10,7 @@
     "envfile": "2.3.0",
     "file-url": "2.0.2",
     "inquirer": "6.0.0",
-    "react-native": "0.55.4"
+    "react-native": "https://github.com/Peter-ChengTszTung/react-native.git"
   },
   "preferGlobal": true,
   "bin": "./index.js"
