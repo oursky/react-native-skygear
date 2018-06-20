@@ -11,6 +11,7 @@ const copyProjectTemplateAndReplace = require(path.resolve(
 ));
 
 const initServerWithProjectName = projectName => {
+  console.log("Preparing local skygear server generation")
   const templatePath = path.resolve(
     __dirname,
     '..',
@@ -18,7 +19,9 @@ const initServerWithProjectName = projectName => {
     'local-skygear-template-oursky'
   );
   const descPath = path.resolve(projectName);
+  console.log("Coping server template")
   copyProjectTemplateAndReplace(templatePath, descPath, projectName);
+  console.log("Server generation done.")
 };
 
 module.exports = {
