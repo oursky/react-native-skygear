@@ -4,7 +4,7 @@ const program = require('commander');
 const { prompt } = require('inquirer');
 const {
   initRNWithProjectName,
-  updatePackageJson,
+  cleanupProject,
   modifiyEnvConfig,
   runPodInstall,
 } = require('./src/rn-cli');
@@ -83,7 +83,7 @@ program
     } else {
       prompt(makeQuestions(name)).then(config => {
         initRNWithProjectName(name);
-        updatePackageJson(name);
+        cleanupProject(name);
         runPodInstall(name);
         modifiyEnvConfig(name, config);
 
