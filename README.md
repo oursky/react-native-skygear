@@ -22,7 +22,7 @@ $ [sudo] gem install cocoapods
 Install react-native-skygear package
 
 ```
-$ npm install -g https://github.com/oursky/react-native-skygear.git
+$ npm install -g https://github.com/oursky/react-native-skygear.git#master
 ```
 
 ### Example
