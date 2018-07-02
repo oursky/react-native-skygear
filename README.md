@@ -12,6 +12,10 @@ A CLI for generate react native project with skygear and other common libraries 
 //install react native cli
 $ brew install node
 $ brew install watchman
+$ npm install -g react-native-cli
+
+//install yarn
+$ brew install yarn
 
 //install cocoapods for generate .xcworkplace
 $ [sudo] gem install cocoapods
@@ -22,8 +26,7 @@ $ [sudo] gem install cocoapods
 Install react-native-skygear package
 
 ```
-$ npm install -g https://github.com/oursky/react-native-skygear.git#master
-```
+$ npm install -g <repo url>
 
 ### Example
 You can start init your app from our template:
@@ -41,10 +44,8 @@ server $ make setup-development
 server $ docker-compose up
 ```
 
-To run rn project:
+### REMARKS
 
 ```
-$ npm run start
-$ npm run android // Need connect real device
-$ npm run ios // Default using development scheme
+For iOS, please select a schema with config suffix before run at Xcode
 ```
