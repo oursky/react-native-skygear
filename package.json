@@ -1,0 +1,19 @@
+{
+  "name": "create-react-native-skygear",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oursky/create-react-native-skygear.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oursky/create-react-native-skygear/issues"
+  },
+  "homepage": "https://github.com/oursky/create-react-native-skygear#readme"
+}
