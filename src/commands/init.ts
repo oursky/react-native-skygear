@@ -1,6 +1,9 @@
 import { CommanderStatic } from "commander";
 import { prompt, Questions } from "inquirer";
 
+import generateReactNativeProject, {
+  ReactNativeTemplate,
+} from "../generator/generateReactNativeProject";
 import { validateProjectName } from "../validation";
 
 interface ProjectSetupConfig {
@@ -86,8 +89,8 @@ export function registerCommand(program: CommanderStatic) {
       }
 
       prompt(makeQuestionsAboutProjectSetup(projectName)).then(config => {
-        // TODO
         console.log(config);
+        generateReactNativeProject(projectName, ReactNativeTemplate.Skygear);
       });
     });
 }
