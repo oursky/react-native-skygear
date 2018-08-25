@@ -11,6 +11,9 @@ function removeFile(fileName) {
 
 const packageJson = require(path.resolve(__dirname, "package.json"));
 packageJson["scripts"]["tsc"] = "tsc --noEmit";
+packageJson["scripts"]["format"] =
+  "prettier --list-different 'src/**/*.{ts,tsx}'";
+packageJson["scripts"]["run-ci"] = "yarn tsc && yarn format";
 
 writeToFile("package.json", JSON.stringify(packageJson, null, 2));
 removeFile("App.js");
