@@ -9,5 +9,5 @@ gulp.task('build', () => {
   return project.src()
     .pipe(project())
     .js
-    .pipe(gulp.dest(path.resolve(__dirname, '../../', 'bin')));
+    .pipe(gulp.dest('dist'));
 });
