@@ -9,7 +9,7 @@
     "build": "gulp build",
     "lint": "gulp lint",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
