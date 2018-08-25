@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+import * as fs from "fs";
 import * as path from "path";
 
 export enum ReactNativeTemplate {
@@ -17,4 +18,10 @@ export default function generateReactNativeProject(
   execSync(`react-native init ${projectName} --template ${templateFilePath}`, {
     stdio: "inherit",
   });
+  const postInstallScript = `${projectName}/postInstall.js`;
+  if (fs.existsSync(postInstallScript)) {
+    execSync(`node ${postInstallScript}`, {
+      stdio: "inherit",
+    });
+  }
 }
