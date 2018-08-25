@@ -1,7 +1,0 @@
-SQLAlchemy==1.2.8
-alembic==0.9.9
-flake8==3.5.0
-psycopg2==2.7.4
-pytest==3.6.0
-skygear==1.5.0
-raven==6.9.0
