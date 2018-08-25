@@ -5,7 +5,7 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "target": "es5",
-    "module": "ES6",
+    "module": "commonjs",
     "lib": ["es5", "es6"],
     "forceConsistentCasingInFileNames": true,
     "strict": true,
