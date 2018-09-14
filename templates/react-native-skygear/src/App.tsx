@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import * as Config from "./Config";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -28,6 +29,10 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    console.log(`Running with ${JSON.stringify(Config)}`);
+  }
+
   render() {
     return (
       <View style={styles.container}>

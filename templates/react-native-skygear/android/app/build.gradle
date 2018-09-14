@@ -1,6 +1,14 @@
 apply plugin: "com.android.application"
 apply plugin: 'kotlin-android'
 
+ext.envConfigFiles = [
+        nightly: ".env.nightly",
+        staging: ".env.staging",
+        production: ".env.production"
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 import com.android.build.OutputFile
 
 /**
@@ -117,9 +125,32 @@ android {
         }
     }
     buildTypes {
-        release {
-            minifyEnabled enableProguardInReleaseBuilds
+        debug {
+            minifyEnabled false
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        development {
+            applicationId "com.oursky.helloworld.dev"
+            dimension "default"
+        }
+        nightly {
+            applicationId "com.oursky.helloworld.nightly"
+            dimension "default"
+        }
+        staging {
+            applicationId "com.oursky.helloworld.staging"
+            dimension "default"
+        }
+        production {
+            applicationId "com.oursky.helloworld"
+            dimension "default"
         }
     }
     // applicationVariants are e.g. debug, release
@@ -145,6 +176,7 @@ android {
         xmlOutput file("lint/lint-result.xml")
     }
 }
+
 configurations {
     ktlint
 }
@@ -152,9 +184,11 @@ configurations {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:+" // From node_modules
+    implementation "com.facebook.react:react-native:+"   // From node_modules
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     ktlint "com.github.shyiko:ktlint:0.28.0"
+
+    implementation project(':react-native-config')
 }
 
 // Run this once to be able to run the application with BUCK
