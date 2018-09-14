@@ -24,4 +24,10 @@ export default function generateReactNativeProject(
       stdio: "inherit",
     });
   }
+  execSync(
+    `find ${projectName}/android/app/src/main/java/com -name '*.java' -print | sed 's/\\(.*\\)\\.java/  & \\1.kt/' | xargs -L1 mv`,
+    {
+      stdio: "inherit",
+    }
+  );
 }
