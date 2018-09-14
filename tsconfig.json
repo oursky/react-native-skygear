@@ -1,0 +1,21 @@
+{
+  "include": [
+    "src/**/*.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es5", "es6"],
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // Smaller bundle
+    "importHelpers": true,
+    // Spec compliance
+    "downlevelIteration": true
+  }
+}
