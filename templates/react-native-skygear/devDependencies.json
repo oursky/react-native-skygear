@@ -1,5 +1,5 @@
 {
-  "@types/react": "16.4.11",
+  "@types/react": "16.4.14",
   "@types/react-native": "0.56.12",
   "prettier": "1.14.2",
   "react-native-typescript-transformer": "1.2.10",
