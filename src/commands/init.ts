@@ -1,10 +1,15 @@
+import * as path from "path";
+import * as fs from "fs";
+
 import { CommanderStatic } from "commander";
 import { prompt, Questions } from "inquirer";
+import * as envfile from "envfile";
 
 import generateReactNativeProject, {
   ReactNativeTemplate,
 } from "../generator/generateReactNativeProject";
 import { validateProjectName } from "../validation";
+import installSentry from "../generator/installSentry";
 
 interface ProjectSetupConfig {
   skygearEndPointDevelopment: string;
@@ -16,6 +21,19 @@ interface ProjectSetupConfig {
   sentryDSNDevelopment: string;
   sentryDSNStaging: string;
   sentryDSNProduction: string;
+}
+
+interface ProjectConfig {
+  skygearEndPoint: string;
+  skygearAPIKey: string;
+  sentryDSN: string;
+}
+
+enum BuildConfig {
+  dev = "dev",
+  nightly = "nightly",
+  staging = "staging",
+  production = "production",
 }
 
 function makeQuestionsAboutProjectSetup(
@@ -74,6 +92,21 @@ function makeQuestionsAboutProjectSetup(
   ];
 }
 
+function addConfigToEnvFile(
+  projectName: string,
+  buildConfig: BuildConfig,
+  projectConfig: ProjectConfig
+) {
+  let envFileName = ".env";
+  if (buildConfig != BuildConfig.dev) {
+    envFileName = `.env.${buildConfig}`;
+  }
+  const envFilePath = path.resolve(projectName, envFileName);
+  const oldEnv = envfile.parseFileSync(envFilePath);
+  const newEnv = Object.assign(oldEnv, projectConfig);
+  fs.writeFileSync(envFilePath, envfile.stringifySync(newEnv));
+}
+
 export function registerCommand(program: CommanderStatic) {
   program
     .command("init <projectName>")
@@ -89,8 +122,31 @@ export function registerCommand(program: CommanderStatic) {
       }
 
       prompt(makeQuestionsAboutProjectSetup(projectName)).then(config => {
-        console.log(config);
         generateReactNativeProject(projectName, ReactNativeTemplate.Skygear);
+        addConfigToEnvFile(projectName, BuildConfig.dev, {
+          sentryDSN: config.sentryDSNDevelopment,
+          skygearAPIKey: config.skygearAPIKeyDevelopment,
+          skygearEndPoint: config.skygearEndPointDevelopment,
+        });
+        addConfigToEnvFile(projectName, BuildConfig.nightly, {
+          sentryDSN: config.sentryDSNStaging,
+          skygearAPIKey: config.skygearAPIKeyStaging,
+          skygearEndPoint: config.skygearEndPointStaging,
+        });
+        addConfigToEnvFile(projectName, BuildConfig.staging, {
+          sentryDSN: config.sentryDSNStaging,
+          skygearAPIKey: config.skygearAPIKeyStaging,
+          skygearEndPoint: config.skygearEndPointStaging,
+        });
+        addConfigToEnvFile(projectName, BuildConfig.production, {
+          sentryDSN: config.sentryDSNProduction,
+          skygearAPIKey: config.skygearAPIKeyProduction,
+          skygearEndPoint: config.skygearEndPointProduction,
+        });
+        // Note(cychiuae)
+        // Because this anonying setup wizard for react-native-sentry
+        // react-native-sentry is installed separately
+        installSentry(projectName);
       });
     });
 }
