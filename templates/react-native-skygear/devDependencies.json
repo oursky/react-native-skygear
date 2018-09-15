@@ -6,5 +6,6 @@
   "typescript": "3.0.1",
   "tslint": "5.11.0",
   "tslint-config-prettier": "1.15.0",
-  "tslint-react": "3.6.0"
+  "tslint-react": "3.6.0",
+  "ts-skygear": "https://github.com/oursky/ts-skygear.git#6a2e2f0bd2cbbf9f9f9d56bd0e2c8ccbb691a824",
 }

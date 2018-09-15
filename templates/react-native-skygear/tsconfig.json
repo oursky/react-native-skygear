@@ -1,5 +1,6 @@
 {
   "include": ["src/**/*"],
+  "files": ["node_modules/ts-skygear/index.d.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     /* Basic Options */
