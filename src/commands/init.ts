@@ -9,6 +9,7 @@ import generateReactNativeProject, {
   ReactNativeTemplate,
 } from "../generator/generateReactNativeProject";
 import { validateProjectName } from "../validation";
+import installSentry from "../generator/installSentry";
 
 interface ProjectSetupConfig {
   skygearEndPointDevelopment: string;
@@ -142,6 +143,10 @@ export function registerCommand(program: CommanderStatic) {
           skygearAPIKey: config.skygearAPIKeyProduction,
           skygearEndPoint: config.skygearEndPointProduction,
         });
+        // Note(cychiuae)
+        // Because this anonying setup wizard for react-native-sentry
+        // react-native-sentry is installed separately
+        installSentry(projectName);
       });
     });
 }
