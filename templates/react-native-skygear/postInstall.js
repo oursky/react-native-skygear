@@ -12,7 +12,7 @@ function removeFile(fileName) {
 const packageJson = require(path.resolve(__dirname, "package.json"));
 packageJson["scripts"]["tsc"] = "tsc --noEmit";
 packageJson["scripts"]["format"] =
-  "prettier --list-different 'src/**/*.{ts,tsx}'";
+  "prettier --write --list-different 'src/**/*.{ts,tsx}'";
 packageJson["scripts"]["lint"] =
   "tslint --project tsconfig.json --config tslint.json --format verbose";
 packageJson["scripts"]["run-ci"] =
