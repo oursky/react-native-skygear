@@ -1,6 +1,15 @@
 import * as React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import { Sentry } from "react-native-sentry";
+
 import * as Config from "./Config";
+
+function setupSentry(): Promise<void> {
+  if (!Config.SENTRY_DSN) {
+    return Promise.resolve();
+  }
+  return Sentry.config(Config.SENTRY_DSN).install();
+}
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -31,6 +40,7 @@ const styles = StyleSheet.create({
 export default class App extends React.Component {
   componentDidMount() {
     console.log(`Running with ${JSON.stringify(Config)}`);
+    setupSentry();
   }
 
   render() {
