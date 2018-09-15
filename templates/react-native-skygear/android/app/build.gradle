@@ -177,6 +177,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"   // From node_modules
 
     compile project(':react-native-config')
+    compile project(':react-native-sentry')
 }
 
 // Run this once to be able to run the application with BUCK
