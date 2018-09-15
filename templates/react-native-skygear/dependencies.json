@@ -1,3 +1,4 @@
 {
-  "react-native-config": "0.11.5"
+  "react-native-config": "0.11.5",
+  "skygear": "1.6.3"
 }
