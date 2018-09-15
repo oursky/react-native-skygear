@@ -1,12 +1,17 @@
 {
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "types/**/*"
   ],
   "compilerOptions": {
     "noImplicitAny": true,
     "target": "es5",
     "module": "commonjs",
     "lib": ["es5", "es6"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*", "./types/*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
