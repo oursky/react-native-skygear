@@ -16,7 +16,7 @@ setup-development:
 
 .PHONY: migrate-create
 migrate-create: docker-build
-	docker-compose run --rm skygear-plugin alembic revision -m ${NAME}
+	docker-compose run --rm skygear-plugin alembic revision -m "${NAME}"
 
 .PHONY: migrate-up-one
 migrate-up-one: docker-build
