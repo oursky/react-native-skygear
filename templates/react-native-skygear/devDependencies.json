@@ -1,4 +1,5 @@
 {
+  "@types/hoist-non-react-statics": "3.0.1",
   "@types/react": "*",
   "@types/react-native": "*",
   "prettier": "1.14.2",

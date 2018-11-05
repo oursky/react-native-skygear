@@ -1,5 +1,6 @@
 {
   "@oursky/react-messageformat": "0.5.0",
+  "hoist-non-react-statics": "3.1.0",
   "intl": "1.2.5",
   "react-native-config": "0.11.5"
 }
