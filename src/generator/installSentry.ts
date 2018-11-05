@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 import * as process from "process";
 import { execSync } from "child_process";
 import { ProjectSetupConfig } from "../commands/init";
@@ -26,7 +27,14 @@ function writeSentryPropertiesFile(
   const content = createSentryPropertiesFileContent(config);
   fs.writeFileSync(savePath, content);
   symlinkPaths.forEach(symlinkPath => {
-    fs.symlinkSync(savePath, symlinkPath);
+    const saveAbsolutePath = path.resolve(process.cwd(), savePath);
+    const symlinkAbsolutePath = path.resolve(process.cwd(), symlinkPath);
+    const symlinkDirAbsolutePath = path.parse(symlinkAbsolutePath);
+    const saveRelativePath = path.relative(
+      symlinkDirAbsolutePath.dir,
+      saveAbsolutePath
+    );
+    fs.symlinkSync(saveRelativePath, symlinkPath);
   });
 }
 
@@ -42,7 +50,7 @@ export default function installSentry(
     dns: config.sentryDSNDevelopment,
     token: config.sentryToken,
   };
-  writeSentryPropertiesFile(devSentryConfig, "./sentry-dev.properties", [
+  writeSentryPropertiesFile(devSentryConfig, "sentry-dev.properties", [
     "ios/sentry.properties",
     "ios/sentry-dev.properties",
     "android/sentry.properties",
@@ -55,14 +63,10 @@ export default function installSentry(
     dns: config.sentryDSNStaging,
     token: config.sentryToken,
   };
-  writeSentryPropertiesFile(
-    stagingSentryConfig,
-    "./sentry-staging.properties",
-    [
-      "ios/sentry-staging.properties",
-      "android/sentry-stagingRelease.properties",
-    ]
-  );
+  writeSentryPropertiesFile(stagingSentryConfig, "sentry-staging.properties", [
+    "ios/sentry-staging.properties",
+    "android/sentry-stagingRelease.properties",
+  ]);
 
   const productionSentryConfig = {
     projectName,
@@ -72,7 +76,7 @@ export default function installSentry(
   };
   writeSentryPropertiesFile(
     productionSentryConfig,
-    "./sentry-production.properties",
+    "sentry-production.properties",
     [
       "ios/sentry-production.properties",
       "android/sentry-productionRelease.properties",
