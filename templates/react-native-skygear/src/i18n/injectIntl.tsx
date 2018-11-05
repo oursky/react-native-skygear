@@ -13,6 +13,7 @@ function _injectIntl<Props extends IntlProps>(
   Component: React.ComponentType<Props>
 ) {
   return function(props: Subtract<Props, IntlProps>) {
+    // tslint:disable-next-line: oursky-no-inline-function-children
     return <Consumer>{intl => <Component {...props} intl={intl} />}</Consumer>;
   };
 }
