@@ -11,7 +11,7 @@ import generateReactNativeProject, {
 import { validateProjectName } from "../validation";
 import installSentry from "../generator/installSentry";
 
-interface ProjectSetupConfig {
+export interface ProjectSetupConfig {
   skygearEndPointDevelopment: string;
   skygearAPIKeyDevelopment: string;
   skygearEndPointStaging: string;
@@ -21,6 +21,7 @@ interface ProjectSetupConfig {
   sentryDSNDevelopment: string;
   sentryDSNStaging: string;
   sentryDSNProduction: string;
+  sentryToken: string;
 }
 
 interface ProjectConfig {
@@ -89,6 +90,11 @@ function makeQuestionsAboutProjectSetup(
       name: "sentryDSNProduction",
       message: "Enter Sentry DSN (Production) ...",
     },
+    {
+      type: "input",
+      name: "sentryToken",
+      message: "Enter Sentry Token ...",
+    },
   ];
 }
 
@@ -146,7 +152,7 @@ export function registerCommand(program: CommanderStatic) {
         // Note(cychiuae)
         // Because this anonying setup wizard for react-native-sentry
         // react-native-sentry is installed separately
-        installSentry(projectName);
+        installSentry(projectName, config);
       });
     });
 }
