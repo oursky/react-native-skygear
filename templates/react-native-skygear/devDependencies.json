@@ -2,6 +2,7 @@
   "@types/react": "*",
   "@types/react-native": "*",
   "prettier": "1.14.2",
+  "react-native-schemes-manager": "1.0.5",
   "typescript": "3.1.6",
   "tslint": "5.11.0",
   "tslint-config-prettier": "1.15.0",
