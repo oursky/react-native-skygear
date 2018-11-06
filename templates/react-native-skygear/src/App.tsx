@@ -2,6 +2,11 @@ import * as React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import { Sentry } from "react-native-sentry";
 
+import { Provider as LocalizationProvider } from "@oursky/react-messageformat";
+
+import { AppText, LocalizedText } from "./components/Text";
+
+import en from "./i18n/en";
 import * as Config from "./Config";
 
 function setupSentry(): Promise<void> {
@@ -45,11 +50,16 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native Skygear!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <LocalizationProvider locale="en" messageByID={en}>
+        <View style={styles.container}>
+          <LocalizedText style={styles.welcome} messageID="app.welcome" />
+          <LocalizedText
+            style={styles.instructions}
+            messageID="app.get_started"
+          />
+          <AppText style={styles.instructions}>{instructions}</AppText>
+        </View>
+      </LocalizationProvider>
     );
   }
 }
