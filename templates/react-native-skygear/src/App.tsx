@@ -1,6 +1,6 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
 import { Sentry } from "react-native-sentry";
+import { Provider as ReduxStoreProvider } from "react-redux";
 
 import { Provider as LocalizationProvider } from "@oursky/react-messageformat";
 
@@ -8,6 +8,7 @@ import AppNavigator from "./components/AppNavigator";
 
 import en from "./i18n/en";
 import * as Config from "./Config";
+import { makeStore } from "./store";
 
 function setupSentry(): Promise<void> {
   if (!Config.SENTRY_DSN) {
@@ -15,6 +16,8 @@ function setupSentry(): Promise<void> {
   }
   return Sentry.config(Config.SENTRY_DSN).install();
 }
+
+const store = makeStore();
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -25,9 +28,11 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <LocalizationProvider locale="en" messageByID={en}>
-        <AppNavigator />
-      </LocalizationProvider>
+      <ReduxStoreProvider store={store}>
+        <LocalizationProvider locale="en" messageByID={en}>
+          <AppNavigator />
+        </LocalizationProvider>
+      </ReduxStoreProvider>
     );
   }
 }

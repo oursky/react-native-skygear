@@ -3,5 +3,8 @@
   "hoist-non-react-statics": "3.1.0",
   "intl": "1.2.5",
   "react-native-config": "0.11.5",
-  "react-navigation": "2.18.1"
+  "react-navigation": "2.18.1",
+  "react-redux": "5.1.0",
+  "redux": "4.0.1",
+  "redux-thunk": "2.3.0"
 }
