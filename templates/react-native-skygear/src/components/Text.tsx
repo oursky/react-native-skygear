@@ -14,7 +14,7 @@ export function LocalizedText(props: LocalizedTextProps) {
   const { messageID, ...textProps } = props;
   return (
     <AppText {...textProps}>
-      <FormattedMessage id="messageID" />
+      <FormattedMessage id={messageID} />
     </AppText>
   );
 }
