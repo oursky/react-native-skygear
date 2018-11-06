@@ -2,9 +2,9 @@ import * as React from "react";
 import { Text, TextProps } from "react-native";
 import { FormattedMessage } from "@oursky/react-messageformat";
 
-export function AppText(props: TextProps) {
-  return <Text allowFontScaling={false} {...props} />;
-}
+export const AppText: React.SFC<TextProps> = props => (
+  <Text allowFontScaling={false} {...props} />
+);
 
 interface LocalizedTextProps extends TextProps {
   messageID: string;
