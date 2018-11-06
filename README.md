@@ -8,7 +8,7 @@ A CLI for generate react native project with skygear and other common libraries 
 ## Contribution
 ### Dev dependencies
 * Node 8.x.x
-* Yarn 1.9.4
+* Yarn 1.12.1
 
 ### Setup
 ```
