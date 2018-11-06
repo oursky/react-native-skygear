@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation";
-import { HomeScreen, DetailsScreen } from "./Screen";
+import { HomeScreen, DetailsScreen, CounterScreen } from "./Screen";
 
 export default createStackNavigator(
   {
@@ -8,6 +8,9 @@ export default createStackNavigator(
     },
     Details: {
       screen: DetailsScreen,
+    },
+    Counter: {
+      screen: CounterScreen,
     },
   },
   {

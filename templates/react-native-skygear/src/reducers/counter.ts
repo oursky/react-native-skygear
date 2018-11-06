@@ -20,6 +20,11 @@ export default function reducer(state: State = initialState, action: Action) {
         ...state,
         count: state.count - action.payload.count,
       };
+    case "ChangeCount":
+      return {
+        ...state,
+        count: state.count + action.payload.count,
+      };
   }
   return state;
 }

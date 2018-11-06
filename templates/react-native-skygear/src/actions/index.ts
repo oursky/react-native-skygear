@@ -1,3 +1,10 @@
-import { IncrementCountAction, DecrementCountAction } from "./counterAction";
+import {
+  IncrementCountAction,
+  DecrementCountAction,
+  ChangeCountAction,
+} from "./counterAction";
 
-export type Action = IncrementCountAction | DecrementCountAction;
+export type Action =
+  | IncrementCountAction
+  | DecrementCountAction
+  | ChangeCountAction;

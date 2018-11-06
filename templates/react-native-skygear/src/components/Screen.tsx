@@ -2,7 +2,20 @@ import * as React from "react";
 import { Platform, StyleSheet, View, TouchableOpacity } from "react-native";
 import { NavigationScreenProps } from "react-navigation";
 
+import {
+  IncrementCountAction,
+  DecrementCountAction,
+  ChangeCountAction,
+  incrementAction,
+  decrementAction,
+  changeCountAction,
+} from "../actions/counterAction";
+
 import { AppText, LocalizedText } from "./Text";
+import { connect } from "react-redux";
+import { State } from "../reducers";
+import { bindActionCreators } from "redux";
+import { Dispatch, ThunkAction } from "../store";
 
 const styles = StyleSheet.create({
   container: {
@@ -44,6 +57,10 @@ export class HomeScreen extends React.PureComponent<HomeScreenProps> {
     this.props.navigation.navigate("Details");
   };
 
+  onPressGotoCounterScreenButton = () => {
+    this.props.navigation.navigate("Counter");
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -58,6 +75,12 @@ export class HomeScreen extends React.PureComponent<HomeScreenProps> {
           onPress={this.onPressGotoDetailsScreenButton}
         >
           <AppText>Go to Details Screen</AppText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={this.onPressGotoCounterScreenButton}
+        >
+          <AppText>Go to Counter Screen</AppText>
         </TouchableOpacity>
       </View>
     );
@@ -90,3 +113,68 @@ export class DetailsScreen extends React.PureComponent<DetailsScreenProps> {
     );
   }
 }
+
+interface CounterScreenMapProps {
+  count: number;
+  increment: (count: number) => IncrementCountAction;
+  decrement: (count: number) => DecrementCountAction;
+  changeCount: (count: number) => ThunkAction<Promise<number>>;
+}
+type CounterScreenProps = NavigationScreenProps & CounterScreenMapProps;
+
+class _CounterScreen extends React.PureComponent<CounterScreenProps> {
+  static navigationOptions = {
+    title: "Counter",
+  };
+
+  onPressBackButton = () => {
+    this.props.navigation.pop();
+  };
+
+  onPressIncrementButton = () => {
+    this.props.increment(1);
+  };
+
+  onPressDecrementButton = () => {
+    this.props.decrement(1);
+  };
+
+  onPressChangeCountButton = () => {
+    this.props.changeCount(this.props.count);
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <AppText>Counter Screen</AppText>
+        <AppText>Current count: {this.props.count}</AppText>
+        <TouchableOpacity onPress={this.onPressIncrementButton}>
+          <AppText>Increment 1</AppText>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onPressDecrementButton}>
+          <AppText>Decrement 1</AppText>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onPressChangeCountButton}>
+          <AppText>Change count</AppText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navigationButton}
+          onPress={this.onPressBackButton}
+        >
+          <AppText>Back</AppText>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+export const CounterScreen = connect(
+  (state: State) => ({
+    count: state.counter.count,
+  }),
+  (dispatch: Dispatch) => ({
+    increment: bindActionCreators(incrementAction, dispatch),
+    decrement: bindActionCreators(decrementAction, dispatch),
+    changeCount: bindActionCreators(changeCountAction, dispatch),
+  })
+)(_CounterScreen);
