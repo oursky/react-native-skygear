@@ -4,6 +4,12 @@ A CLI for generate react native project with skygear and other common libraries 
 
 ## Prerequisites
 * react-native-cli 2.0.1
+* Yarn 1.12.1
+
+## Usage
+```
+create-react-native-skygear init YourProjectName
+```
 
 ## Contribution
 ### Dev dependencies
@@ -14,3 +20,10 @@ A CLI for generate react native project with skygear and other common libraries 
 ```
 yarn
 ```
+
+### Update template
+You can update the template by modifying `./template/react-native-skygear`.
+`HelloWorld` or `helloworld` will be replaced by `YourProjectName` or `yourprojectname` after the project generation. It may be useful to you if you need something depends on project's name
+
+### Add dependencies to template
+Modify `./template/react-native-skygear/dependencies.json` or `./template/react-native-skygear/devDependencies.json` to add dependencies to the template
