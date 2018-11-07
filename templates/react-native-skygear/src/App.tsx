@@ -1,3 +1,5 @@
+import skygear from "skygear";
+
 import * as React from "react";
 import { Sentry } from "react-native-sentry";
 import { Provider as ReduxStoreProvider } from "react-redux";
@@ -22,6 +24,11 @@ const store = makeStore();
 export default class App extends React.Component {
   componentDidMount() {
     console.log(`Running with ${JSON.stringify(Config)}`);
+    skygear.config({
+      apiKey: Config.SKYGEAR_APIKEY,
+      endPoint: Config.SKYGEAR_ENDPOINT,
+    });
+
     // tslint:disable-next-line: no-floating-promises
     setupSentry();
   }
