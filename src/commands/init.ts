@@ -122,12 +122,15 @@ function addConfigToEnvFile(
   projectConfig: ProjectConfig
 ) {
   let envFileName = ".env";
-  if (buildConfig != BuildConfig.dev) {
+  if (buildConfig !== BuildConfig.dev) {
     envFileName = `.env.${buildConfig}`;
   }
   const envFilePath = path.resolve(projectName, envFileName);
   const oldEnv = envfile.parseFileSync(envFilePath);
-  const newEnv = Object.assign(oldEnv, projectConfig);
+  const newEnv = {
+    ...oldEnv,
+    ...projectConfig,
+  };
   fs.writeFileSync(envFilePath, envfile.stringifySync(newEnv));
 }
 
