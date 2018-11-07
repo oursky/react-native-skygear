@@ -58,3 +58,6 @@ matrix:
         - yarn
       script:
         - ./scripts/integration_test.sh android
+
+notifications:
+    slack: oursky:AoEf0tfGwRzKceD1WLHeDs0j
