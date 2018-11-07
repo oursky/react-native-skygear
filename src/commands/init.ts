@@ -37,27 +37,45 @@ enum BuildConfig {
   production = "production",
 }
 
+function makeDefaultProjectSetupConfig(
+  projectName: string
+): ProjectSetupConfig {
+  return {
+    skygearEndPointDevelopment: "http://127.0.0.1:3000/",
+    skygearAPIKeyDevelopment: projectName.toLowerCase(),
+    skygearEndPointStaging: `https://${projectName.toLowerCase()}.staging.skygeario.com/`,
+    skygearAPIKeyStaging: "",
+    skygearEndPointProduction: `https://${projectName.toLowerCase()}.skygeario.com/`,
+    skygearAPIKeyProduction: "",
+    sentryDSNDevelopment: "",
+    sentryDSNStaging: "",
+    sentryDSNProduction: "",
+    sentryToken: "",
+  };
+}
+
 function makeQuestionsAboutProjectSetup(
   projectName: string
 ): Questions<ProjectSetupConfig> {
+  const defaultProjectSetupConfig = makeDefaultProjectSetupConfig(projectName);
   return [
     {
       type: "input",
       name: "skygearEndPointDevelopment",
       message: "Enter Skygear End Point (Development) ...",
-      default: "http://127.0.0.1:3000/",
+      default: defaultProjectSetupConfig.skygearEndPointDevelopment,
     },
     {
       type: "input",
       name: "skygearAPIKeyDevelopment",
       message: "Enter Skygear API Key (Development) ...",
-      default: projectName.toLowerCase(),
+      default: defaultProjectSetupConfig.skygearAPIKeyDevelopment,
     },
     {
       type: "input",
       name: "skygearEndPointStaging",
       message: "Enter Skygear End Point (Staging) ...",
-      default: `https://${projectName.toLowerCase()}.staging.skygeario.com/`,
+      default: defaultProjectSetupConfig.skygearEndPointStaging,
     },
     {
       type: "input",
@@ -68,7 +86,7 @@ function makeQuestionsAboutProjectSetup(
       type: "input",
       name: "skygearEndPointProduction",
       message: "Enter Skygear End Point (Production) ...",
-      default: `https://${projectName.toLowerCase()}.skygeario.com/`,
+      default: defaultProjectSetupConfig.skygearEndPointProduction,
     },
     {
       type: "input",
@@ -104,20 +122,24 @@ function addConfigToEnvFile(
   projectConfig: ProjectConfig
 ) {
   let envFileName = ".env";
-  if (buildConfig != BuildConfig.dev) {
+  if (buildConfig !== BuildConfig.dev) {
     envFileName = `.env.${buildConfig}`;
   }
   const envFilePath = path.resolve(projectName, envFileName);
   const oldEnv = envfile.parseFileSync(envFilePath);
-  const newEnv = Object.assign(oldEnv, projectConfig);
+  const newEnv = {
+    ...oldEnv,
+    ...projectConfig,
+  };
   fs.writeFileSync(envFilePath, envfile.stringifySync(newEnv));
 }
 
 export function registerCommand(program: CommanderStatic) {
   program
     .command("init <projectName>")
+    .option("-t, --helloworld", "HelloWorld")
     .description("Create React Native project with Skygear with name")
-    .action((projectName: string) => {
+    .action((projectName: string, options: { helloworld: boolean }) => {
       const isProjectNameValid = validateProjectName(projectName);
       if (!isProjectNameValid) {
         console.error(
@@ -127,32 +149,39 @@ export function registerCommand(program: CommanderStatic) {
         return;
       }
 
-      prompt(makeQuestionsAboutProjectSetup(projectName)).then(config => {
-        generateReactNativeProject(projectName, ReactNativeTemplate.Skygear);
-        addConfigToEnvFile(projectName, BuildConfig.dev, {
-          sentryDSN: config.sentryDSNDevelopment,
-          skygearAPIKey: config.skygearAPIKeyDevelopment,
-          skygearEndPoint: config.skygearEndPointDevelopment,
+      Promise.resolve(options.helloworld)
+        .then(useHelloWorld => {
+          if (useHelloWorld) {
+            return Promise.resolve(makeDefaultProjectSetupConfig(projectName));
+          }
+          return prompt(makeQuestionsAboutProjectSetup(projectName));
+        })
+        .then(config => {
+          generateReactNativeProject(projectName, ReactNativeTemplate.Skygear);
+          addConfigToEnvFile(projectName, BuildConfig.dev, {
+            sentryDSN: config.sentryDSNDevelopment,
+            skygearAPIKey: config.skygearAPIKeyDevelopment,
+            skygearEndPoint: config.skygearEndPointDevelopment,
+          });
+          addConfigToEnvFile(projectName, BuildConfig.nightly, {
+            sentryDSN: config.sentryDSNStaging,
+            skygearAPIKey: config.skygearAPIKeyStaging,
+            skygearEndPoint: config.skygearEndPointStaging,
+          });
+          addConfigToEnvFile(projectName, BuildConfig.staging, {
+            sentryDSN: config.sentryDSNStaging,
+            skygearAPIKey: config.skygearAPIKeyStaging,
+            skygearEndPoint: config.skygearEndPointStaging,
+          });
+          addConfigToEnvFile(projectName, BuildConfig.production, {
+            sentryDSN: config.sentryDSNProduction,
+            skygearAPIKey: config.skygearAPIKeyProduction,
+            skygearEndPoint: config.skygearEndPointProduction,
+          });
+          // Note(cychiuae)
+          // Because this anonying setup wizard for react-native-sentry
+          // react-native-sentry is installed separately
+          installSentry(projectName, config);
         });
-        addConfigToEnvFile(projectName, BuildConfig.nightly, {
-          sentryDSN: config.sentryDSNStaging,
-          skygearAPIKey: config.skygearAPIKeyStaging,
-          skygearEndPoint: config.skygearEndPointStaging,
-        });
-        addConfigToEnvFile(projectName, BuildConfig.staging, {
-          sentryDSN: config.sentryDSNStaging,
-          skygearAPIKey: config.skygearAPIKeyStaging,
-          skygearEndPoint: config.skygearEndPointStaging,
-        });
-        addConfigToEnvFile(projectName, BuildConfig.production, {
-          sentryDSN: config.sentryDSNProduction,
-          skygearAPIKey: config.skygearAPIKeyProduction,
-          skygearEndPoint: config.skygearEndPointProduction,
-        });
-        // Note(cychiuae)
-        // Because this anonying setup wizard for react-native-sentry
-        // react-native-sentry is installed separately
-        installSentry(projectName, config);
-      });
     });
 }

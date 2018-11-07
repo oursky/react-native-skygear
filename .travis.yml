@@ -1,0 +1,60 @@
+sudo: required
+matrix:
+  include:
+    - language: node_js
+      cache:
+        directories:
+          - node_modules
+      node_js: '8'
+      before_install:
+        - npm i -g yarn
+      install:
+        - yarn
+      script:
+        - yarn ci-check
+    - language: objective-c
+      os: osx
+      osx_image: xcode9.4
+      env:
+        - TRAVIS_NODE_VERSION="8.9.0"
+      before_install:
+        - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+        - npm i -g yarn
+        - npm i -g react-native-cli
+      install:
+        - yarn
+      script:
+        - ./scripts/integration_test.sh ios
+    - language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - tools
+          - platform-tools
+          - build-tools-27.0.3
+          - android-22
+          - extra-android-support
+          - extra-android-m2repository
+          - extra-google-m2repository
+          - sys-img-armeabi-v7a-android-22
+        licenses:
+          - android-sdk-preview-license-.+
+          - android-sdk-license-.+
+          - google-gdk-license-.+
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+          - $HOME/.android/build-cache
+      env:
+        - TRAVIS_NODE_VERSION="8.9.0"
+      before_install:
+        - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+        - npm i -g yarn
+        - npm i -g react-native-cli
+        - yes | sdkmanager "platforms;android-27"
+      install:
+        - yarn
+      script:
+        - ./scripts/integration_test.sh android
