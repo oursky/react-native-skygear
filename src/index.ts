@@ -16,7 +16,7 @@ program.on("command:*", () => {
 });
 
 program.parse(process.argv);
-if (program.args.length === 0) {
+if (process.argv.slice(2).length === 0) {
   console.error(
     "You didn't pass any command\nSee --help for a list of available commands."
   );
