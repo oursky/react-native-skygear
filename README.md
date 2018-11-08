@@ -1,5 +1,8 @@
 # Create React Native Skygear
 
+[![Build Status](https://travis-ci.com/oursky/create-react-native-skygear.svg?branch=master)](https://travis-ci.com/oursky/create-react-native-skygear)
+
+
 A CLI for generate react native project with skygear and other common libraries setup.
 
 ## Prerequisites
