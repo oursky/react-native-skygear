@@ -20,6 +20,7 @@ matrix:
         provider: npm
         email: cychiuae@connect.ust.hk
         api_key: $NPM_PUBLISH_TOKEN
+        skip_cleanup: true
         on:
           tags: true
 
