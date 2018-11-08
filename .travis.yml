@@ -6,7 +6,7 @@ matrix:
         directories:
           - node_modules
       env:
-        - secure: "y3S8xrdLufs0wL/VtgMMXcDQxAtbZeydvGGBNRVA+8XraiqcWatgEQZkVnxQ4MTMywlm7lDPZhYLxvFprLzx/lgjIq2K2NTwixND4LcOUG2jJo5lsL7GfMQYjhZyyoJIVpuC3TCRh2LNBNt532c9HxtIPZkOR3/Cm3JrBidOiUe0lCcWI74OZGx4RLSia+Zv4E8rcriuKn3uEbMWZWciJccsdPrCgrLBnfiUgrwOmqhewcwYONDMwyds1ZDrL+bXm8xhCrOFKfQKW85AS6uhZ6xJz/6LCjQr1ETUXh7QulX5UG1gjgM1lc3+DRILSiDZLztGHiSnxcBd1XlGacQkFKaXC7NjDPJ7mQBtqwbkg+tSIeQsP2BALwjeerUYfgHidqXFh2WZt4tVxITJNMD4wmrnN8V2zdFyTbg2SiaeCrSPxPYPM4qlilRRPA/vDMyYwRuklClj3jFWqKElG25ZSiexb7Lv87Bdk0OnOGHBsyM3IMix8aywAnA4S6rt5A9lfXZqmJHYA0MTtXYrRRwr28nF06sMryBOQGFtdZyMOB+BaIl2JYrbj19pLWPkY+xIC/4KMr7GPhRiHVXz3pebdNnH6Kt6QLUSyiCfPWP5lGCFTRufDFzvRHrhNX8UJSZJdjuSiZgIL5J6bJudJngqPYJgIuMQIZ6bLfqo+9jdPAo="
+        - secure: "JzQgNNvgBM5zkK5bn8Xzdnegsu/lBW5zaWC57THKkHPngxH60SgLcukpTbvo+oIgnGZhR22X3oXvgqRH3pQmu9gREp/GZ1n3qqowL17QxVf3+KWjvI2Y8PduTiWi+O/tnsg23EREJNnEIt3eE+sB/a4fE1YUA+T0A6WsJphm1MGDrL5JA1Oh0azHiWRM8INdKrjHRNd8Dr1nh3OHDDxqKsAcXZgXPapFaCn2Deys+tALQbVbvW0YLnabA+SQDElKZ0MhL5YuvS2x7lIGe4zQosmvrSpzRJgsVBLay4HKddAwHz4ot+VWk4J8s8INPPviKaBx7ZmMtRjrhdyiCAyQ+09xS++04/veTohfbIsUZBriR+/mo/PjGrI7/JF/k/TevCRnwgs7x372sHeNz/gOFd1UkTUUFVPJLdf3fpF9BiZcDBXrDJ5+R4Zq2QY8U29DIsugqQWYGRyr3NlecdlIGl4Z7ofqz7ocqNg+eC3lLaNSdLN/68oNgRl1gj8AesFuxo2S76sJtqQ5kvXqoJ9dRRhx8bPzNPLHeMSmE4vxlsrco6beY2OzSL/OLMhpX1haH03Surb4qardQrobfDlvtJmm1Ki5V3umAYn/h25dpoBlmrA9s2fOY9XTDUUtatqVfXoG4xohKjXkZnH9NhWlWJI90tjZHluZpixUtYtpiw8="
       node_js: '8'
       before_install:
         - npm i -g yarn
