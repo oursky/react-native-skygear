@@ -7,8 +7,9 @@ A CLI for generate react native project with skygear and other common libraries 
 * Yarn 1.12.1
 
 ## Usage
-```
-create-react-native-skygear init YourProjectName
+```sh
+$ yarn global add create-react-native-skygear
+$ create-react-native-skygear init YourProjectName
 ```
 
 ## Contribution
@@ -17,8 +18,9 @@ create-react-native-skygear init YourProjectName
 * Yarn 1.12.1
 
 ### Setup
-```
-yarn
+```sh
+$ yarn
+$ yarn watch
 ```
 
 ### Update template
