@@ -5,6 +5,8 @@ matrix:
       cache:
         directories:
           - node_modules
+      env:
+        - secure: "AkGE0/YLpUCF9vqAdPy8GdE5kzbVTKERHMdgmDqGOsBDJfA4Ytb2gCR2voksQR5WM4QQzMR+JPuqjM+gN7UH4vyPzn8CRmp9TDgyeeLaHI7nUGwKpnuD6qGq4eJKLkwNfkGJm1fdlOOGOA1C7Qg9YhICyAlxkClSjUvgip9XGfnIZAsSfzT5YEFq9CZnCy3sFJYA0kYb4bkhwZzYkaAog+VVdbRF/WCKrGDljGrLltDyP+pHMKG3fR9UVAAzxSnRmLFgBcgLmqFZSGqB+t/EiuCoeTsKECj7T2rPrbhETpFrdE6oKsXE19Ngam+4/0slAE6cy4wm9KSQqHNq60mhCCSlUt/NdmZXM6SPXKgXRSqJXep2JtwyEI2J6Y/NGPw2k28wE7hZWkXOx/zhcDKE1Ix8srert89EJctApPEjOsFltumGHQurY5b3S6ugucM3ndNLHR9EmnW+i5VT+RkmN7DlCChIpfS3jP3eNz1OxfVQpQcVMSgijngzh/CtNlu+3zpx3VDd1UplBIo8ER/uyZMdnVwINMnlI5TtTtx3vzZAQ0AIVkizDK/sWtRYX8ZAf7Tsyz8b3Ln++pFwquy6Deqf3H9Pq53lNLm4CE9VieubymO88C3Y1w96fpLMUqgkjsG6ABnQrnUA/huBURHG66bJiDcjt9CukKYqnBwu2xo="
       node_js: '8'
       before_install:
         - npm i -g yarn
@@ -12,6 +14,15 @@ matrix:
         - yarn
       script:
         - yarn ci-check
+      before_deploy:
+        - yarn build
+      deploy:
+        provider: npm
+        email: cychiuae@connect.ust.hk
+        api_key: $NPM_PUBLISH_TOKEN
+        on:
+          tags: true
+
     - language: objective-c
       os: osx
       osx_image: xcode9.4
@@ -25,6 +36,7 @@ matrix:
         - yarn
       script:
         - ./scripts/integration_test.sh ios
+
     - language: android
       jdk: oraclejdk8
       android:
@@ -60,4 +72,5 @@ matrix:
         - ./scripts/integration_test.sh android
 
 notifications:
-    slack: oursky:AoEf0tfGwRzKceD1WLHeDs0j
+    slack:
+      secure: "JW+p0XeIp8fxmeEtbd9m1yliPk9E1nSTBQLGPEypoxZ7KiEYc49h4k9kMQBdlfY1rA+7uFNYR8EnSEh+Y1ZG8RCVUqFdAdDlfMTziUf30N8uRoIOJS6jn/dwOZf7NdQWUtIBX09SaRk7ByPuE7jKnCL6kqjg86sx6HH+74AfTyLZ0QmGALoIFHy07ZdNQnlGyJb8Ms1cmOkKTh1ENDty+mnJrjGr1NQyLa1a8E6mE0i4N0WdD0czilpLRinaDqVBaXa/630wBkxJNa7RM36Yz/mw2+7I7YQAW9RTmp+WAq19jMaN2qMccPvmedUuE7GvjQVe9QbiLDZzoJxRsWHRdsJiQNr+R7aKPL4t5LIMUw+SrEGuzRiQLNyiQgSK6lqlWo0t/SWGa4ZHlFT7tEbH1cmnVzj24Zb3zILwMHVB33kBd5jNjpfloM6txnRIRQONOQX1/PE/icSwTTH5YMLJWUZYF6CQukO9mEdbHkUw9LW/H/TDNw0vg3u7lM2E0/GIzLB32ogs4P7uGYnLa/BQYQXNug5hfVHQGWbSvkT77bgx3PHdRQKh5OwF7ILHULNaRTSC8HbYlVrg2L2HSIyexbrAj1EyH7Xzl/ZHFP8pJ+kaKxzqRdN7/Ir9oe5A8L+hqJkYQz/UtUsQpf+cokGU9lL+tMAHw2wdayO2Zrj9dDQ="
