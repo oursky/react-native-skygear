@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "tslint-react",
+    "tslint-config-prettier",
+    "@oursky/tslint-oursky"
+  ],
+  "rules": {
+    "adjacent-overload-signatures": true,
+    "await-promise": true,
+    "ban-types": [
+      true,
+      ["Object"],
+      ["Function"],
+      ["Boolean"],
+      ["Number"],
+      ["String"],
+      ["Symbol"]
+    ],
+    "label-position": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-arg": true,
+    "no-conditional-assignment": true,
+    "no-construct": true,
+    "no-duplicate-super": true,
+    "no-duplicate-switch-case": true,
+    "no-floating-promises": true,
+    "no-for-in-array": true,
+    "no-implicit-dependencies": [true, "dev"],
+    "no-internal-module": true,
+    "no-invalid-this": true,
+    "no-misused-new": true,
+    "no-namespace": true,
+    "no-non-null-assertion": true,
+    "no-object-literal-type-assertion": true,
+    "no-reference": true,
+    "no-return-await": true,
+    "no-sparse-arrays": true,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-unbound-method": true,
+    "no-unnecessary-initializer": true,
+    "no-unsafe-finally": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "prefer-const": true,
+    "prefer-for-of": true,
+    "prefer-object-spread": true,
+    "prefer-while": true,
+    "radix": true,
+    "restrict-plus-operands": true,
+    "use-isnan": true
+  }
+}

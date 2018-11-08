@@ -1,50 +1,34 @@
-# React Native Skygear CLI
+# Create React Native Skygear
+
+[![Build Status](https://travis-ci.com/oursky/create-react-native-skygear.svg?branch=master)](https://travis-ci.com/oursky/create-react-native-skygear)
+
 
 A CLI for generate react native project with skygear and other common libraries setup.
 
-## Getting Started
+## Prerequisites
+* react-native-cli 2.0.1
+* Yarn 1.12.1
 
-
-### Prerequisites
-
-
-```
-//install react native cli
-$ brew install node
-$ brew install watchman
-
-//install cocoapods for generate .xcworkplace
-$ [sudo] gem install cocoapods
+## Usage
+```sh
+$ yarn global add create-react-native-skygear
+$ create-react-native-skygear init YourProjectName
 ```
 
-### Installing
+## Contribution
+### Dev dependencies
+* Node 8.x.x
+* Yarn 1.12.1
 
-Install react-native-skygear package
-
-```
-$ npm install -g https://github.com/oursky/react-native-skygear.git#master
-```
-
-### Example
-You can start init your app from our template:
-
-```
-$ react-native-skygear init <projectname>
-? Enter Skygear End Point (Development) ... 
-...
+### Setup
+```sh
+$ yarn
+$ yarn watch
 ```
 
-If you also init local skygear server, please ensure shutdown other docker container before run following script.
-```
-$ cd server
-server $ make setup-development
-server $ docker-compose up
-```
+### Update template
+You can update the template by modifying `./template/react-native-skygear`.
+`HelloWorld` or `helloworld` will be replaced by `YourProjectName` or `yourprojectname` after the project generation. It may be useful to you if you need something depends on project's name
 
-To run rn project:
-
-```
-$ npm run start
-$ npm run android // Need connect real device
-$ npm run ios // Default using development scheme
-```
+### Add dependencies to template
+Modify `./template/react-native-skygear/dependencies.json` or `./template/react-native-skygear/devDependencies.json` to add dependencies to the template
