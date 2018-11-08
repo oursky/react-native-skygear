@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/oursky/create-react-native-skygear.git"
   },
-  "author": "",
+  "author": "Oursky Limited",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/oursky/create-react-native-skygear/issues"
