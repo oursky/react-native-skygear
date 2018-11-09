@@ -1,4 +1,4 @@
-class Maybe<T> {
+export class Maybe<T> {
   value?: T;
 
   private constructor(value?: T) {
