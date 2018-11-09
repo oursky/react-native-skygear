@@ -4,12 +4,18 @@ import * as fs from "fs";
 import { CommanderStatic } from "commander";
 import { prompt, Questions } from "inquirer";
 import * as envfile from "envfile";
+import * as semver from "semver";
+
+import * as Config from "../config";
+import { getVersion as getYarnVersion } from "../cli/yarn";
+import { getVersion as getRNCliVersion } from "../cli/reactNativeCli";
 
 import generateReactNativeProject, {
   ReactNativeTemplate,
 } from "../generator/generateReactNativeProject";
 import { validateProjectName } from "../validation";
 import installSentry from "../generator/installSentry";
+import { Maybe } from "../types";
 
 export interface ProjectSetupConfig {
   skygearEndPointDevelopment: string;
@@ -145,6 +151,38 @@ export function registerCommand(program: CommanderStatic) {
         console.error(
           `${projectName} is not a valid name for a project.` +
             "Please use a valid identifier name (alphanumeric)."
+        );
+        return;
+      }
+
+      const yarnVersionIsValid = getYarnVersion().map(version =>
+        semver.gte(version, Config.TARGET_YARN_VERSION)
+      );
+
+      if (Maybe.isNone(yarnVersionIsValid)) {
+        console.error("Please install yarn\nHint: npm i -g yarn");
+        return;
+      } else if (!yarnVersionIsValid.getValue()) {
+        console.error(
+          `This cli requires Yarn with version ${Config.TARGET_YARN_VERSION}`
+        );
+        return;
+      }
+
+      const reactNativeCliVersionIsValid = getRNCliVersion().map(version =>
+        semver.gte(version, Config.TARGET_RN_CLI_VERSION)
+      );
+
+      if (Maybe.isNone(reactNativeCliVersionIsValid)) {
+        console.error(
+          "Please install react native cli \n Hint: npm i -g react-native-cli"
+        );
+        return;
+      } else if (!reactNativeCliVersionIsValid.getValue()) {
+        console.error(
+          `This cli requires react-native-cli with version ${
+            Config.TARGET_RN_CLI_VERSION
+          }`
         );
         return;
       }
