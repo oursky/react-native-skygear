@@ -7,12 +7,15 @@ export function getVersion(): Maybe<string> {
   let cliVersion: string;
 
   try {
-    cliVersion = (
+    const info = (
       execSync("react-native --version", {
         stdio: [0, "pipe", "ignore"],
       }).toString() || ""
     ).trim();
+    const matches = info.match(/react-native-cli\: (.*)/);
+    cliVersion = matches != null && matches[1] != null ? matches[1] : "";
   } catch (e) {
+    console.log(e);
     return Maybe.none();
   }
 
