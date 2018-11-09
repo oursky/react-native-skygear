@@ -6,7 +6,7 @@
   "@types/react-navigation": "*",
   "@types/react-redux": "6.0.9",
   "@types/redux": "3.6.0",
-  "prettier": "1.14.2",
+  "prettier": "1.15.1",
   "react-native-schemes-manager": "1.0.5",
   "typescript": "3.1.6",
   "tslint": "5.11.0",
