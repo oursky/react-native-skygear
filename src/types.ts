@@ -11,13 +11,13 @@ export class Maybe<T> {
 
   static just<T>(value: T) {
     if (!value) {
-      new Error("You must provide a value");
+      throw new Error("You must provide a value");
     }
     return new Maybe(value);
   }
 
   static isJust<T>(t: Maybe<T>) {
-    return t.type == "Just";
+    return t.type === "Just";
   }
 
   static none<T>() {
@@ -25,7 +25,7 @@ export class Maybe<T> {
   }
 
   static isNone<T>(t: Maybe<T>) {
-    return t.type == "None";
+    return t.type === "None";
   }
 
   map<R>(f: (a: T) => R): Maybe<R> {

@@ -15,7 +15,7 @@ import generateReactNativeProject, {
 } from "../generator/generateReactNativeProject";
 import { validateProjectName } from "../validation";
 import installSentry from "../generator/installSentry";
-import { Maybe } from "src/types";
+import { Maybe } from "../types";
 
 export interface ProjectSetupConfig {
   skygearEndPointDevelopment: string;

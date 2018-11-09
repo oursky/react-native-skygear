@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 
-import { Maybe } from "src/types";
+import { Maybe } from "../types";
 
 // Inspired from react-native-cli
 export function getVersion(): Maybe<string> {
@@ -16,7 +16,7 @@ export function getVersion(): Maybe<string> {
     return Maybe.none();
   }
 
-  if (cliVersion == "") {
+  if (cliVersion === "") {
     return Maybe.none();
   }
 
