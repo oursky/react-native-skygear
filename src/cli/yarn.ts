@@ -23,7 +23,7 @@ export function getVersion(): Maybe<string> {
 
   try {
     if (semver.gte(yarnVersion, "0.16.0")) {
-      return Maybe.some(yarnVersion);
+      return Maybe.just(yarnVersion);
     }
   } catch (e) {
     return Maybe.none();

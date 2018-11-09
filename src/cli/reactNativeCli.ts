@@ -20,5 +20,5 @@ export function getVersion(): Maybe<string> {
     return Maybe.none();
   }
 
-  return Maybe.some(cliVersion);
+  return Maybe.just(cliVersion);
 }
