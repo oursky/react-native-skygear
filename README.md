@@ -9,6 +9,13 @@ A CLI for generate react native project with skygear and other common libraries 
 * react-native-cli 2.0.1
 * Yarn 1.12.1
 
+## Pre-setup
+
+- [ ] Setup Appcenter for iOS and android
+    - [ ] Certs for iOS
+    - [ ] Keystores for Andoird
+    - [ ] Build when new push
+
 ## Usage
 ```sh
 $ yarn global add create-react-native-skygear
