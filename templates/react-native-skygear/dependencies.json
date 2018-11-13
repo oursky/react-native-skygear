@@ -7,5 +7,6 @@
   "react-navigation": "2.18.1",
   "react-redux": "5.1.0",
   "redux": "4.0.1",
-  "redux-thunk": "2.3.0"
+  "redux-thunk": "2.3.0",
+  "skygear": "1.6.4"
 }

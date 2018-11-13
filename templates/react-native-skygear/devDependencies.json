@@ -1,4 +1,5 @@
 {
+  "@oursky/ts-skygear": "0.3.0",
   "@oursky/tslint-oursky": "0.8.0",
   "@types/hoist-non-react-statics": "3.0.1",
   "@types/react": "*",
