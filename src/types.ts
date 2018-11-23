@@ -10,7 +10,7 @@ export class Maybe<T> {
   }
 
   static just<T>(value: T) {
-    if (!value) {
+    if (!value && typeof value !== "boolean") {
       throw new Error("You must provide a value");
     }
     return new Maybe(value);
