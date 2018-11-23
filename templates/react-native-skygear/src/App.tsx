@@ -1,4 +1,4 @@
-import skygear from "skygear";
+import skygear from "skygear/react-native";
 
 import * as React from "react";
 import { Sentry } from "react-native-sentry";
