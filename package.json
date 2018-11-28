@@ -1,6 +1,6 @@
 {
   "name": "create-react-native-skygear",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Scaffolding for react native with skygear",
   "bin": {
     "create-react-native-skygear": "./bin/index.js"
