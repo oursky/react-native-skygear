@@ -41,7 +41,7 @@ export interface ChangeCountAction {
 
 export function changeCountAction(count: number): ThunkAction<Promise<number>> {
   return dispatch => {
-    return Promise.resolve(count).then(asyncCount => {
+    return Promise.resolve(count).then(_asyncCount => {
       dispatch({
         type: "ChangeCount",
         payload: {
