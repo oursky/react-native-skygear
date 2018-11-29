@@ -5,7 +5,6 @@ import { NavigationScreenProps } from "react-navigation";
 import {
   IncrementCountAction,
   DecrementCountAction,
-  ChangeCountAction,
   incrementAction,
   decrementAction,
   changeCountAction,
