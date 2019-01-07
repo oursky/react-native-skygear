@@ -4,7 +4,7 @@
   "@types/hoist-non-react-statics": "3.0.1",
   "@types/react": "*",
   "@types/react-native": "*",
-  "@types/react-navigation": "*",
+  "@types/react-navigation": "3.0.1",
   "@types/react-redux": "6.0.9",
   "prettier": "1.15.1",
   "react-native-schemes-manager": "1.0.5",

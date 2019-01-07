@@ -185,6 +185,7 @@ dependencies {
 
     compile project(':react-native-config')
     compile project(':react-native-sentry')
+    compile project(':react-native-gesture-handler')
 }
 
 // Run this once to be able to run the application with BUCK
