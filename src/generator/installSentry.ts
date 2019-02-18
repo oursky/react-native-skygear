@@ -3,6 +3,7 @@ import * as path from "path";
 import * as process from "process";
 import { execSync } from "child_process";
 import { ProjectSetupConfig } from "../commands/init";
+import { RN_SENTRY_VERSION } from "../config";
 
 interface SentryConfig {
   projectName: string;
@@ -82,7 +83,7 @@ export default function installSentry(
       "android/sentry-productionRelease.properties",
     ]
   );
-  execSync(`yarn add react-native-sentry -E`, {
+  execSync(`yarn add react-native-sentry@${RN_SENTRY_VERSION} -E`, {
     stdio: "inherit",
   });
   process.chdir("..");
