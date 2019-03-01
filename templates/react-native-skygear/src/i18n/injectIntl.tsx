@@ -2,20 +2,16 @@ import * as React from "react";
 import { Consumer, ContextValue } from "@oursky/react-messageformat";
 import hoistNonReactStatic from "hoist-non-react-statics";
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-type Subtract<T, K> = Omit<T, keyof K>;
-
 export interface IntlProps {
   intl: ContextValue;
 }
 
-function _injectIntl<Props extends IntlProps>(
-  Component: React.ComponentType<Props>
-) {
-  return function(props: Subtract<Props, IntlProps>) {
-    // tslint:disable-next-line: oursky-no-inline-function-children
+function _injectIntl<Props>(Component: React.ComponentType<Props & IntlProps>) {
+  const ComponentWithIntl: React.SFC<Props> = props => {
+    // tslint:disable-next-line:oursky-no-inline-function-children
     return <Consumer>{intl => <Component {...props} intl={intl} />}</Consumer>;
   };
+  return ComponentWithIntl;
 }
 
 export function injectIntl<Props extends IntlProps>(
