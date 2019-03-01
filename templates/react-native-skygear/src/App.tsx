@@ -4,7 +4,7 @@ import * as React from "react";
 import { Sentry } from "react-native-sentry";
 import { Provider as ReduxStoreProvider } from "react-redux";
 
-import { Provider as LocalizationProvider } from "@oursky/react-messageformat";
+import { LocaleProvider } from "@oursky/react-messageformat";
 
 import AppNavigator from "./components/AppNavigator";
 
@@ -38,9 +38,9 @@ export default class App extends React.Component {
   render() {
     return (
       <ReduxStoreProvider store={store}>
-        <LocalizationProvider locale="en" messageByID={en}>
+        <LocaleProvider locale="en" messageByID={en}>
           <AppNavigator />
-        </LocalizationProvider>
+        </LocaleProvider>
       </ReduxStoreProvider>
     );
   }
