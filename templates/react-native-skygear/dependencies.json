@@ -5,7 +5,7 @@
   "intl": "1.2.5",
   "jsc-android": "236355.1.1",
   "react-native-config": "0.11.7",
-  "react-native-gesture-handler": "1.0.12",
+  "react-native-gesture-handler": "1.0.16",
   "react-navigation": "3.0.9",
   "react-redux": "5.1.0",
   "redux": "4.0.1",
