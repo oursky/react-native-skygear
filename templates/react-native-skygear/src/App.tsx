@@ -23,15 +23,14 @@ const store = makeStore();
 
 export default class App extends React.Component {
   componentDidMount() {
+    // eslint-disable-next-line
     console.log(`Running with ${JSON.stringify(Config)}`);
 
-    // tslint:disable-next-line: no-floating-promises
     skygear.config({
       apiKey: Config.SKYGEAR_APIKEY,
       endPoint: Config.SKYGEAR_ENDPOINT,
     });
 
-    // tslint:disable-next-line: no-floating-promises
     setupSentry();
   }
 

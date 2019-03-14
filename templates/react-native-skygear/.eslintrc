@@ -1,0 +1,13 @@
+{
+  "extends": ["@oursky"],
+  "rules": {
+    "no-restricted-imports": ["error", {
+      "paths": [
+        {
+          "name": "react-native",
+          "importNames": ["Text"]
+        }
+      ]
+    }]
+  }
+}

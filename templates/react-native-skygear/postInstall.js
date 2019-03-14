@@ -13,8 +13,7 @@ const packageJson = require(path.resolve(__dirname, "package.json"));
 packageJson["scripts"]["tsc"] = "tsc --noEmit";
 packageJson["scripts"]["format"] =
   "prettier --write --list-different 'src/**/*.{ts,tsx}'";
-packageJson["scripts"]["lint"] =
-  "tslint --project tsconfig.json --config tslint.json --format verbose";
+packageJson["scripts"]["lint"] = "eslint 'src/**/*.{js,jsx,ts,tsx}'";
 packageJson["scripts"]["run-ci"] =
   "yarn tsc && prettier --list-different 'src/**/*.{ts,tsx}' && yarn lint";
 packageJson["scripts"]["postinstall"] = "react-native-schemes-manager all";

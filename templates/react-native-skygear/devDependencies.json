@@ -1,15 +1,19 @@
 {
+  "@oursky/eslint-config": "0.11.0",
   "@oursky/ts-skygear": "0.3.0",
-  "@oursky/tslint-oursky": "0.11.0",
   "@types/hoist-non-react-statics": "3.0.1",
   "@types/react": "*",
   "@types/react-native": "*",
   "@types/react-navigation": "3.0.4",
   "@types/react-redux": "6.0.9",
+  "@typescript-eslint/eslint-plugin": "1.4.2",
+  "@typescript-eslint/parser": "1.4.2",
+  "eslint": "5.15.1",
+  "eslint-config-prettier": "4.1.0",
+  "eslint-plugin-react": "7.12.4",
+  "eslint-plugin-react-hooks": "1.5.0",
+  "eslint-plugin-react-native": "3.6.0",
   "prettier": "1.16.4",
   "react-native-schemes-manager": "1.0.5",
-  "typescript": "3.3.3333",
-  "tslint": "5.13.1",
-  "tslint-config-prettier": "1.18.0",
-  "tslint-react": "3.6.0"
+  "typescript": "3.3.3333"
 }
