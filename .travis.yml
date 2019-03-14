@@ -7,7 +7,7 @@ matrix:
           - node_modules
       env:
         - secure: "JzQgNNvgBM5zkK5bn8Xzdnegsu/lBW5zaWC57THKkHPngxH60SgLcukpTbvo+oIgnGZhR22X3oXvgqRH3pQmu9gREp/GZ1n3qqowL17QxVf3+KWjvI2Y8PduTiWi+O/tnsg23EREJNnEIt3eE+sB/a4fE1YUA+T0A6WsJphm1MGDrL5JA1Oh0azHiWRM8INdKrjHRNd8Dr1nh3OHDDxqKsAcXZgXPapFaCn2Deys+tALQbVbvW0YLnabA+SQDElKZ0MhL5YuvS2x7lIGe4zQosmvrSpzRJgsVBLay4HKddAwHz4ot+VWk4J8s8INPPviKaBx7ZmMtRjrhdyiCAyQ+09xS++04/veTohfbIsUZBriR+/mo/PjGrI7/JF/k/TevCRnwgs7x372sHeNz/gOFd1UkTUUFVPJLdf3fpF9BiZcDBXrDJ5+R4Zq2QY8U29DIsugqQWYGRyr3NlecdlIGl4Z7ofqz7ocqNg+eC3lLaNSdLN/68oNgRl1gj8AesFuxo2S76sJtqQ5kvXqoJ9dRRhx8bPzNPLHeMSmE4vxlsrco6beY2OzSL/OLMhpX1haH03Surb4qardQrobfDlvtJmm1Ki5V3umAYn/h25dpoBlmrA9s2fOY9XTDUUtatqVfXoG4xohKjXkZnH9NhWlWJI90tjZHluZpixUtYtpiw8="
-      node_js: '8'
+      node_js: '10'
       before_install:
         - npm i -g yarn
       install:
@@ -28,7 +28,7 @@ matrix:
       os: osx
       osx_image: xcode9.4
       env:
-        - TRAVIS_NODE_VERSION="8.9.0"
+        - TRAVIS_NODE_VERSION="10.0.0"
       before_install:
         - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
         - npm i -g yarn
@@ -61,7 +61,7 @@ matrix:
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
       env:
-        - TRAVIS_NODE_VERSION="8.9.0"
+        - TRAVIS_NODE_VERSION="10.0.0"
       before_install:
         - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
         - npm i -g yarn
