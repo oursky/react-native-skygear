@@ -24,7 +24,7 @@ $ create-react-native-skygear init YourProjectName
 
 ## Contribution
 ### Dev dependencies
-* Node 8.x.x
+* Node 10.x.x
 * Yarn 1.12.1
 
 ### Setup

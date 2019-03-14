@@ -1,11 +1,10 @@
 {
   "@oursky/react-messageformat": "0.9.0",
-  "@oursky/react-native-oursky": "0.13.2",
+  "@oursky/react-native-oursky": "0.15.0",
   "hoist-non-react-statics": "3.1.0",
   "intl": "1.2.5",
-  "jsc-android": "236355.1.1",
   "react-native-config": "0.11.7",
-  "react-native-gesture-handler": "1.0.16",
+  "react-native-gesture-handler": "1.1.0",
   "react-navigation": "3.3.2",
   "react-redux": "5.1.0",
   "redux": "4.0.1",

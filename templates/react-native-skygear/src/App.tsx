@@ -21,27 +21,28 @@ function setupSentry(): Promise<void> {
 
 const store = makeStore();
 
-export default class App extends React.Component {
-  componentDidMount() {
+export default function App() {
+  const [isReady, setIsReady] = React.useState(false);
+  React.useEffect(() => {
+    // eslint-disable-next-line
     console.log(`Running with ${JSON.stringify(Config)}`);
 
-    // tslint:disable-next-line: no-floating-promises
-    skygear.config({
-      apiKey: Config.SKYGEAR_APIKEY,
-      endPoint: Config.SKYGEAR_ENDPOINT,
+    Promise.all([
+      skygear.config({
+        apiKey: Config.SKYGEAR_APIKEY,
+        endPoint: Config.SKYGEAR_ENDPOINT,
+      }),
+      setupSentry(),
+    ]).then(() => {
+      setIsReady(true);
     });
+  }, []);
 
-    // tslint:disable-next-line: no-floating-promises
-    setupSentry();
-  }
-
-  render() {
-    return (
-      <ReduxStoreProvider store={store}>
-        <LocaleProvider locale="en" messageByID={en}>
-          <AppNavigator />
-        </LocaleProvider>
-      </ReduxStoreProvider>
-    );
-  }
+  return (
+    <ReduxStoreProvider store={store}>
+      <LocaleProvider locale="en" messageByID={en}>
+        {isReady && <AppNavigator />}
+      </LocaleProvider>
+    </ReduxStoreProvider>
+  );
 }

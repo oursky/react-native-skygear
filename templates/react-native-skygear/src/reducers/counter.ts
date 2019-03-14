@@ -25,6 +25,7 @@ export default function reducer(state: State = initialState, action: Action) {
         ...state,
         count: state.count + action.payload.count,
       };
+    default:
+      return state;
   }
-  return state;
 }
