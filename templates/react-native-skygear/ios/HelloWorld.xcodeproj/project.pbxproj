@@ -1201,7 +1201,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
