@@ -9,3 +9,12 @@ npm-debug.log
 yarn-error.log
 
 dist/
+
+*.pem
+*.cer
+*.cert
+*.p12
+*.pfx
+*.key
+.env
+docker-compose.override.yml
